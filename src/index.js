@@ -1,17 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import faker from 'faker'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import Comment from './Comment'
+import ApprovalCard from './ApprovalCard'
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const App = () => {
+    return(
+        <div>
+            <div className='ui bottom attached segment inverted very padded'>
+                <div className='ui olive huge centered header'>
+                    Welcome to this silly App.
+                </div>
+               
+            </div>
+            <div className='ui container grid'>
+                <div className='six wide column'>
+                    <Comment 
+                        author={faker.name.findName()} 
+                        image={faker.image.image()} 
+                        text='I really liked this post!'/>
+                    <Comment 
+                        author={faker.name.findName()} 
+                        image={faker.image.image()} 
+                        text='Great as usual!'/>
+                    <ApprovalCard>
+                        <Comment 
+                            author={faker.name.findName()} 
+                            image={faker.image.image()} 
+                            text='Great as usual!'/>
+                    </ApprovalCard>
+                    <ApprovalCard>
+                        <Comment 
+                            author={faker.name.findName()} 
+                            image={faker.image.image()} 
+                            text='Not impressed at all... I was expecting something more but at least it was free :)'/>
+                    </ApprovalCard>
+                </div>
+                
+            </div>
+        </div> 
+    )
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'))
